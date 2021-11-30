@@ -1,0 +1,71 @@
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    margin: 0;
+  }
+
+  html > body > #__nuxt > #__layout {
+    @apply overflow-hidden;
+
+    > div {
+      @apply flex flex-col min-h-screen lg:h-screen;
+    }
+  }
+
+  svg {
+    height: auto;
+  }
+
+  *::selection {
+  }
+
+  html {
+    height: -webkit-fill-available;
+    scroll-behavior: smooth;
+    box-sizing: border-box;
+  }
+
+  body {
+    @apply relative text-18 font-aktiv font-normal;
+    min-height: -webkit-fill-available;
+  }
+
+  p {
+    @apply font-aktiv font-normal text-18;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-gt font-bold;
+  }
+
+  h1 {
+    @apply text-24 lg:text-36;
+  }
+
+  h2 {
+    @apply text-20 lg:text-28;
+  }
+
+  h3 {
+    @apply text-18 lg:text-24;
+  }
+
+  select {
+    /* for Firefox */
+    -moz-appearance: none;
+    /* for Chrome */
+    -webkit-appearance: none;
+  }
+  
+  /* For IE10 */
+  select::-ms-expand {
+    display: none;
+  }
+}

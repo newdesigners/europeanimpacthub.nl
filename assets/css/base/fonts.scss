@@ -1,0 +1,57 @@
+@layer base {
+  @font-face {
+    font-family: 'Aktiv Grotesk Corp';
+    src: url('~assets/fonts/AktivGrotesk_Bd.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'Aktiv Grotesk Corp';
+    src: url('~assets/fonts/AktivGrotesk_Md.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'Aktiv Grotesk Corp';
+    src: url('~assets/fonts/AktivGrotesk_Rg.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'GT Walsheim Pro';
+    src: url('~assets/fonts/GT-Walsheim-Pro-Black.otf') format('opentype');
+    font-weight: 900;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'GT Walsheim Pro';
+    src: url('~assets/fonts/GT-Walsheim-Pro-Bold.otf') format('opentype');
+    font-weight: bold;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'GT Walsheim Pro';
+    src: url('~assets/fonts/GT-Walsheim-Pro-Medium-Oblique.otf') format('opentype');
+    font-weight: 500;
+    font-style: italic;
+  }
+
+  @font-face {
+    font-family: 'GT Walsheim Pro';
+    src: url('~assets/fonts/GT-Walsheim-Pro-Medium.otf') format('opentype');
+    font-weight: 500;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'GT Walsheim Pro';
+    src: url('~assets/fonts/GT-Walsheim-Pro-Regular.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+  }
+}
