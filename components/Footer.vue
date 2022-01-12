@@ -6,7 +6,8 @@
         <p class="text-12 md:text-25">dr. Mendeltje van Keulen</p>
         <a
           class="text-12 md:text-25 underline"
-          href="mailto:gebruiker@provider.nl">
+          href="mailto:gebruiker@provider.nl"
+        >
           m.vankeulen@hhs.nl
         </a>
       </div>
