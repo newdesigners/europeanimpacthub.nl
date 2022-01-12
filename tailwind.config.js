@@ -16,7 +16,7 @@ module.exports = {
         '32%': '32%',
         '48%': '48%',
         '49%': '49%',
-        'initial' : 'innital',
+        'initial' : 'initial',
       },
       colors: {
         //Base
@@ -49,9 +49,11 @@ module.exports = {
         '16': ['16px', { lineHeight: '24px' }],
         '18': ['18px', { lineHeight: '27px'}],
         '20': ['20px', { lineHeight: '29px'}],
-        '26': ['26px', { lineHeight: '30px'}],
+        '23': ['23px', { lineHeight: '33px' }],
         '24': ['24px', { lineHeight: '36px' }],
+        '26': ['26px', { lineHeight: '30px'}],
         '28': ['28px', { lineHeight: '42px' }],
+        '30-logo': ['30px', { lineHeight: '26px' }],
         '36': ['36px', { lineHeight: '54px' }],
       },
       width: {
