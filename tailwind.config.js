@@ -51,6 +51,7 @@ module.exports = {
         '20': ['20px', { lineHeight: '29px'}],
         '23': ['23px', { lineHeight: '33px' }],
         '24': ['24px', { lineHeight: '36px' }],
+        '25': ['25px', { lineHeight: '32px' }],
         '26': ['26px', { lineHeight: '30px'}],
         '28': ['28px', { lineHeight: '42px' }],
         '30-logo': ['30px', { lineHeight: '26px' }],
