@@ -1,5 +1,6 @@
 module.exports = {
   mode: 'jit',
+  important: true,
   purge: [
     './components/**/*.{vue,js}',
     './layouts/**/*.vue',
@@ -44,6 +45,7 @@ module.exports = {
         ],
       }, 
       fontSize: {
+        '13': ['13px', { lineHeight: '17px' }],
         '14': ['14px', { lineHeight: '18px' }],
         '15': ['15px', { lineHeight: '19.2px' }],
         '16': ['16px', { lineHeight: '24px' }],
@@ -54,6 +56,7 @@ module.exports = {
         '25': ['25px', { lineHeight: '32px' }],
         '26': ['26px', { lineHeight: '30px'}],
         '28': ['28px', { lineHeight: '42px' }],
+        '30': ['30px', { lineHeight: '43px' }],
         '30-logo': ['30px', { lineHeight: '26px' }],
         '36': ['36px', { lineHeight: '54px' }],
       },
