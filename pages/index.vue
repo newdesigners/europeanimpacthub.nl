@@ -1,14 +1,12 @@
 <template>
   <section>
     <FullWidthImage />
-    <TitleText />
+    <!-- <TitleText /> -->
     <MenuCards />
+    <RecentNewsPreview />
   </section>
 </template>
 
 <script>
 export default {};
 </script>
-
-<style>
-</style>
