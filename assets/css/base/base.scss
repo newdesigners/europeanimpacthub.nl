@@ -28,12 +28,12 @@
   }
 
   body {
-    @apply relative text-18 font-aktiv font-normal;
+    @apply relative text-13 font-aktiv font-normal text-secondary;
     min-height: -webkit-fill-available;
   }
 
   p {
-    @apply font-aktiv font-normal text-18;
+    @apply font-aktiv font-normal text-13 text-secondary;
   }
 
   h1,

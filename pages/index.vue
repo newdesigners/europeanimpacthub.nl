@@ -1,5 +1,7 @@
 <template>
   <section>
+    <FullWidthImage />
+    <TitleText />
     <MenuCards />
   </section>
 </template>
