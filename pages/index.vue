@@ -4,6 +4,7 @@
     <TitleText />
     <MenuCards />
     <RecentNewsPreview />
+    <Carousel />
   </section>
 </template>
 

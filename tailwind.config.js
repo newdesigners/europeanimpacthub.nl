@@ -70,6 +70,9 @@ module.exports = {
         '-30': '-30',
         '-40': '-40',
         '-50': '-50',
+      },
+      dropShadow: {
+        'team-member': '4px 4px 4px rgba(0, 0, 0, 0.25)',
       }
     },
     container: {
