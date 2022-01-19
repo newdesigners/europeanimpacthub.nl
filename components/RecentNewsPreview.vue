@@ -7,13 +7,13 @@
         class="block"
         href="#"
       >
-        <div class="flex gap-x-3 h-64">
+        <div class="flex gap-x-3 lg:gap-x-36 h-64 lg:h-96">
           <div class="flex-1 py-5">
             <h2 class="underline pb-4 text-20 lg:text-30 text-white">Recente nieuws</h2>
             <p class="uppercase text-secondary lg:text-25 pb-1.5 lg:pb-3.5">event</p>
-            <p class="font-medium text-white">De German Desk dient als een brug tussen ambitieuze studenten en bedrijven/organisaties die hulp zoeken bij het betreden van de Duitse markt</p>
+            <p class="text-white lg:text-20">De German Desk dient als een brug tussen ambitieuze studenten en bedrijven/organisaties die hulp zoeken bij het betreden van de Duitse markt</p>
           </div>
-          <figure class="w-[45%] h-full rounded-r-lg overflow-hidden">
+          <figure class="w-[46%] lg:w-2/5 h-full rounded-r-lg overflow-hidden">
             <img class="w-full h-full object-cover" src="~/assets/images/image-vertical.jpg" alt="some alt text">
           </figure>
         </div>

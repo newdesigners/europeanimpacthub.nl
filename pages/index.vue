@@ -1,7 +1,7 @@
 <template>
   <section>
     <FullWidthImage />
-    <!-- <TitleText /> -->
+    <TitleText />
     <MenuCards />
     <RecentNewsPreview />
   </section>
