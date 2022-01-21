@@ -63,40 +63,6 @@ export default {
         autoplaySpeed: 5000,
         pauseOnHover: true,
       },
-      slides: [
-        {
-          name: 'Tibor Hargitai',
-          title: 'Onderzoeker',
-          image: {
-            filename: 'https://picsum.photos/200',
-            alt: 'some alt text',
-          },
-        },
-        {
-          name: 'Tibor Hargitai',
-          title: 'Onderzoeker',
-          image: {
-            filename: 'https://picsum.photos/201',
-            alt: 'some alt text',
-          },
-        },
-        {
-          name: 'Tibor Hargitai',
-          title: 'Onderzoeker',
-          image: {
-            filename: 'https://picsum.photos/202',
-            alt: 'some alt text',
-          },
-        },
-        {
-          name: 'Tibor Hargitai',
-          title: 'Onderzoeker',
-          image: {
-            filename: 'https://picsum.photos/203',
-            alt: 'some alt text',
-          },
-        },
-      ],
     };
   },
 };
