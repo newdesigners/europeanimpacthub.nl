@@ -36,7 +36,6 @@
           </div>
         </div>
       </VueSlickCarousel>
-
     </div>
     </article>
   </div>
