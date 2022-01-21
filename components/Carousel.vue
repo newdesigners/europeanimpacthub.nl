@@ -2,74 +2,25 @@
 <template>
   <div>
     <article
-      class="pb-14 lg:pb-20 relative"
+      class="pb-14 lg:pb-20 relative w-full"
     >
-    <div class="">
+    <div class="w-full max-w-[100%] overflow-hidden">
       <h2 class="text-20 lg:text-36 pb-5 lg:pb-8 text-center">Ontmoet het Team</h2>
       <VueSlickCarousel v-bind="slickOptions">
-        <div>
-          <div class="w-[150px] h-[150px] text-15 text-center">
+        <div
+          v-for="(slide, index) in slides"
+          :key="index"  
+        >
+          <div class="mx-3 w-[150px] h-[150px] lg:w-[300px] lg:h-[300px] lg:mx-8 text-15 text-center">
             <figure class="w-full h-full rounded-md overflow-hidden mb-2.5 drop-shadow-team-member ">
               <img
                 class="w-full h-full object-cover"
-                src="~/assets/images/image-vertical.jpg"
-                alt="some alt text"
+                :src="slide.image.filename"
+                :alt="slide.image.alt"
               />
             </figure>
-            <p class="font-medium text-black">Tibor Hargitai</p>
-            <p class="text-black">Onderzoeker</p>
-          </div>
-        </div>
-        <div>
-          <div class="w-[150px] h-[150px] text-15 text-center">
-            <figure class="w-full h-full rounded-md overflow-hidden mb-2.5 drop-shadow-team-member ">
-              <img
-                class="w-full h-full object-cover"
-                src="~/assets/images/image-vertical.jpg"
-                alt="some alt text"
-              />
-            </figure>
-            <p class="font-medium text-black">Tibor Hargitai</p>
-            <p class="text-black">Onderzoeker</p>
-          </div>
-        </div>
-        <div>
-          <div class="w-[150px] h-[150px] text-15 text-center">
-            <figure class="w-full h-full rounded-md overflow-hidden mb-2.5 drop-shadow-team-member ">
-              <img
-                class="w-full h-full object-cover"
-                src="~/assets/images/image-vertical.jpg"
-                alt="some alt text"
-              />
-            </figure>
-            <p class="font-medium text-black">Tibor Hargitai</p>
-            <p class="text-black">Onderzoeker</p>
-          </div>
-        </div>
-        <div>
-          <div class="w-[150px] h-[150px] text-15 text-center">
-            <figure class="w-full h-full rounded-md overflow-hidden mb-2.5 drop-shadow-team-member ">
-              <img
-                class="w-full h-full object-cover"
-                src="~/assets/images/image-vertical.jpg"
-                alt="some alt text"
-              />
-            </figure>
-            <p class="font-medium text-black">Tibor Hargitai</p>
-            <p class="text-black">Onderzoeker</p>
-          </div>
-        </div>
-        <div>
-          <div class="w-[150px] h-[150px] text-15 text-center">
-            <figure class="w-full h-full rounded-md overflow-hidden mb-2.5 drop-shadow-team-member ">
-              <img
-                class="w-full h-full object-cover"
-                src="~/assets/images/image-vertical.jpg"
-                alt="some alt text"
-              />
-            </figure>
-            <p class="font-medium text-black">Tibor Hargitai</p>
-            <p class="text-black">Onderzoeker</p>
+            <p class="font-medium text-black lg:text-20">{{ slide.name }}</p>
+            <p class="text-black lg:text-20">{{ slide.title }}</p>
           </div>
         </div>
       </VueSlickCarousel>
@@ -84,13 +35,50 @@ export default {
   data() {
     return {
       slickOptions: {
-        slidesToShow: 3,
+        slidesToShow: 1,
+        slidesToScroll: 1,
         arrows: false,
         centerMode: true,
-        centerPadding: '50px',
-        focusOnSelect: true,
+        centerPadding: '40px',
         infinite: true,
+        variableWidth: true,
+        autoplay: true,
+        pauseOnHover: true,
       },
+      slides: [
+        {
+          name: 'Tibor Hargitai',
+          title: 'Onderzoeker',
+          image: {
+            filename: 'https://picsum.photos/200',
+            alt: 'some alt text',
+          },
+        },
+        {
+          name: 'Tibor Hargitai',
+          title: 'Onderzoeker',
+          image: {
+            filename: 'https://picsum.photos/201',
+            alt: 'some alt text',
+          },
+        },
+        {
+          name: 'Tibor Hargitai',
+          title: 'Onderzoeker',
+          image: {
+            filename: 'https://picsum.photos/202',
+            alt: 'some alt text',
+          },
+        },
+        {
+          name: 'Tibor Hargitai',
+          title: 'Onderzoeker',
+          image: {
+            filename: 'https://picsum.photos/203',
+            alt: 'some alt text',
+          },
+        },
+      ],
     };
   },
 };
