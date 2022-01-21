@@ -24,9 +24,9 @@
       <div class="delay-200 transition duration-500 ease-out opacity-0 w-full text-18 text-white xl:flex  xl:flex-1 xl:opacity-100 xl:h-full xl:justify-end" :class="{ 'block opacity-100' : isActive }">
         <ul class="xl:flex xl:items-center xl:h-full xl:text-secondary" @click="onClose">
           <li class="pb-5 xl:pb-0 xl:mr-9"><NuxtLink class="font-gt font-bold text-20 xl:text-23" to="/kennis-en-onderzoek">Kennis & Onderzoek</NuxtLink></li>
-          <li class="pb-5 xl:pb-0 xl:mr-9"><NuxtLink class="font-gt font-bold text-20 xl:text-23" to="/why-jcr">Diensten</NuxtLink></li>
-          <li class="pb-5 xl:pb-0 xl:mr-9"><NuxtLink class="font-gt font-bold text-20 xl:text-23" to="/contact-us">Student Corner</NuxtLink></li>
-          <li class="pb-5 xl:pb-0"><NuxtLink class="font-gt font-bold text-20 xl:text-23" to="/contact-us">Newsroom</NuxtLink></li>
+          <li class="pb-5 xl:pb-0 xl:mr-9"><NuxtLink class="font-gt font-bold text-20 xl:text-23" to="/diensten">Diensten</NuxtLink></li>
+          <li class="pb-5 xl:pb-0 xl:mr-9"><NuxtLink class="font-gt font-bold text-20 xl:text-23" to="/student-corner">Student Corner</NuxtLink></li>
+          <li class="pb-5 xl:pb-0"><NuxtLink class="font-gt font-bold text-20 xl:text-23" to="/newsroom">Newsroom</NuxtLink></li>
         </ul>
       </div>
     </div>
