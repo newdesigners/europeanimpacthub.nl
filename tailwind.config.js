@@ -1,5 +1,6 @@
 module.exports = {
   mode: 'jit',
+  important: true,
   purge: [
     './components/**/*.{vue,js}',
     './layouts/**/*.vue',
@@ -44,6 +45,7 @@ module.exports = {
         ],
       }, 
       fontSize: {
+        '13': ['13px', { lineHeight: '17px' }],
         '14': ['14px', { lineHeight: '18px' }],
         '15': ['15px', { lineHeight: '19.2px' }],
         '16': ['16px', { lineHeight: '24px' }],
@@ -54,12 +56,24 @@ module.exports = {
         '25': ['25px', { lineHeight: '32px' }],
         '26': ['26px', { lineHeight: '30px'}],
         '28': ['28px', { lineHeight: '42px' }],
+        '30': ['30px', { lineHeight: '43px' }],
         '30-logo': ['30px', { lineHeight: '26px' }],
         '36': ['36px', { lineHeight: '54px' }],
+        '50': ['50px', { lineHeight: '59px' }],
       },
       width: {
         'initial': 'initial',
       },
+      zIndex: {
+        '-10': '-10',
+        '-20': '-20',
+        '-30': '-30',
+        '-40': '-40',
+        '-50': '-50',
+      },
+      dropShadow: {
+        'team-member': '4px 4px 4px rgba(0, 0, 0, 0.25)',
+      }
     },
     container: {
       padding: {
