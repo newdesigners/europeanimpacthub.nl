@@ -1,0 +1,23 @@
+.rich-text {
+  & > * {
+    @apply pb-4 lg:pb-8
+  }
+
+  p {
+    @apply lg:text-25;
+  }
+
+  ul {
+    @apply list-disc list-inside marker:text-primary pl-3;
+  }
+
+  li {
+    @apply lg:text-25;
+  }
+
+  &--center {
+    p {
+      @apply text-center;
+    }
+  }
+}

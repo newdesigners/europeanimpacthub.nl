@@ -1,5 +1,5 @@
 <template>
-  <header class="bg-white w-full self-start z-50 delay-100 h-28 transition-height duration-500 ease-in-out sticky top-0 bg-blue-background overflow-hidden xl:h-initial xl:overflow-visible" :class="{ 'bg-primary xl:bg-white h-screen' : isActive }">
+  <header class="bg-white w-full self-start z-50 delay-100 h-28 transition-height duration-500 ease-in-out sticky top-0 bg-blue-background overflow-hidden xl:h-initial xl:overflow-visible" :class="{ 'bg-primary xl:bg-white h-screen header--open' : isActive }">
     <div class="h-28 xl:h-initial container flex justify-between flex-wrap xl:justify-start xl:items-center xl:py-9">
       <div class="h-28 xl:h-initial w-full flex justify-between xl:w-initial">
         <NuxtLink
@@ -53,3 +53,9 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+.header--open {
+  @apply bg-primary xl:bg-white h-screen !important;
+}
+</style>

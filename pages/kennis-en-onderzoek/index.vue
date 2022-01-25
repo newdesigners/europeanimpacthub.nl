@@ -9,6 +9,14 @@
         description: 'Als lectoraat op de Haagse Hogeschool doen wij onderzoek naar de praktijk van Europees werken.'
       }"
     />
+    <RichText
+      :blok="{
+        content: `
+          <p>Kennis wordt ingezet voor het opleiden van een nieuwe generatie professionals en het maken van impact op de werkvloer. Ons team richt zich op vakgebieden als bestuurskunde, bedrijfskunde, communicatie en recht.</p>
+        `,
+        text_align: 'center',
+      }"
+    />
   </section>
 </template>
 
