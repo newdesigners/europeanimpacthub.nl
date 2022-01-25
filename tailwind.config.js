@@ -13,6 +13,7 @@ module.exports = {
     extend: {
       spacing: {
         'container': "theme(container.padding.DEFAULT)",
+        'container-lg': "theme(container.padding.lg)",
         '31%': '31%',
         '32%': '32%',
         '48%': '48%',

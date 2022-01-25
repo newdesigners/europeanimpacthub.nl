@@ -2,7 +2,7 @@
   <div
     class="pb-12 lg:pb-24"
   >
-    <article class="container relative after:block after:-z-10 after:absolute after:bg-red after:top-0 after:-left-full after:right-container after:bottom-0 after:rounded-r-lg">
+    <article class="container relative after:block after:-z-10 after:absolute after:bg-red after:top-0 after:-left-full after:right-container-lg after:bottom-0 after:rounded-r-lg">
       <a
         class="block"
         href="#"

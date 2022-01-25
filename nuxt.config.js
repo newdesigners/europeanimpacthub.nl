@@ -28,6 +28,7 @@ export default {
     { src: '~/plugins/composition-api.js' },
     { src: '~/plugins/storyblok-rich-text-renderer.js', mode: 'client'},
     { src: '~/plugins/vue-slick-carousel.js', mode: 'client' },
+    { src: '~/plugins/vue-snip.js', mode: 'client' },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
