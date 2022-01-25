@@ -2,7 +2,7 @@
   <section>
     <FullWidthImage />
     <TitleText />
-    <MenuCards />
+    <MenuPreview />
     <RecentNewsPreview />
     <Carousel
       :blok="{

@@ -17,6 +17,7 @@
         text_align: 'center',
       }"
     />
+    <PostPreview />
   </section>
 </template>
 
