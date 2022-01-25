@@ -25,6 +25,7 @@
         `
       }"
     />
+    <PostPreview />
   </section>
 </template>
 
