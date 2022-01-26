@@ -8,13 +8,12 @@
   }
 
   ul, ol {
-    @apply list-disc list-inside marker:text-primary pl-3;
+    @apply list-disc list-inside marker:text-primary marker:font-bold pl-3;
   }
 
   ol {
     @apply list-decimal
   }
-
 
   li {
     @apply lg:text-25;
@@ -43,12 +42,24 @@
       @apply md:text-20 md:font-normal;
     }
 
+    ul li p, ol li p {
+      @apply pb-2 md:pb-2.5;
+    }
+
     & div > * {
-      @apply pb-7;
+      @apply pb-7 md:pb-9;
     }
 
     h2, h3, h4, h5, h6 {
       @apply pb-1.5;
+    }
+
+    h2 + p,
+    h3 + p,
+    h4 + p,
+    h5 + p,
+    h6 + p {
+      @apply pt-6 md:pt-8;
     }
 
     img {

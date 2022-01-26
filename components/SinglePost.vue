@@ -24,14 +24,18 @@
         </div>
       </div>
     </article>
+    <footer class="mx-auto md:w-3/5">
+      <Banner v-if="blok.type === 'service'"  />
+    </footer>
   </div>
 </template>
 
 <script>
+import Banner from "./Banner.vue";
 export default {
-  computed: {
-    content() {
-      return JSON.parse(`
+    computed: {
+        content() {
+            return JSON.parse(`
         {
           "body": {
             "type": "doc",
@@ -331,20 +335,18 @@ export default {
                     ]
                   }
                 ]
-              },
-              {
-                "type": "paragraph"
               }
             ]
           }
         }
       `);
+        },
     },
-  },
-  props: {
-    blok: {
-      type: Object,
+    props: {
+        blok: {
+            type: Object,
+        },
     },
-  },
+    components: { Banner }
 };
 </script>

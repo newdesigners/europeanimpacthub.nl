@@ -1,5 +1,5 @@
 <template>
-  <div class="container" v-editable="blok">
+  <div class="container pb-16" v-editable="blok">
     <SinglePost :blok="blok" />
   </div>
 </template>
@@ -15,6 +15,7 @@ export default {
           filename: 'https://picsum.photos/1350/430',
           alt: 'some alt text here',
         },
+        type: 'service',
       },
     };
   },
