@@ -1,21 +1,6 @@
 <template>
   <div class="container" v-editable="blok">
-    <div class="post-single__section">
-      <aside class="text-15 pb-5 lg:pb-9">
-        <Breadcrumb />
-      </aside>
-      <article class="">
-        <figure class="w-full rounded-xl overflow-hidden">
-          <img v-if="blok.image" :src="blok.image.filename" :alt="blok.image.alt" class="post-single__src">
-        </figure>
-        <div class="md:w-3/5">
-          <h1 class="text-center">{{ blok.title }}</h1>
-          <p>{{ blok.excerpt }}</p>
-          <div class="">       
-          </div>
-        </div>
-      </article>
-    </div>
+    <SinglePost :blok="blok" />
   </div>
 </template>
  
