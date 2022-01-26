@@ -39,6 +39,10 @@
       @apply text-black font-medium;
     }
 
+    p, li, a {
+      @apply md:text-20 md:font-normal;
+    }
+
     & div > * {
       @apply pb-7;
     }
