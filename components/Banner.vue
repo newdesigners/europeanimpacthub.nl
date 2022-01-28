@@ -1,5 +1,5 @@
 <template>
-  <div class="rounded-xl bg-secondary w-[90%] mx-auto">
+  <div class="rounded-md lg:rounded-xl bg-secondary w-[90%] mx-auto">
     <div class="w-3/4 py-4 md:py-8 text-white mx-auto max-w-[400px]">
       <h2 class="font-black text-15 md:text-25 pb-2.5 md:pb-3 underline text-center">Interesse in samenwerking?</h2>
       <p class="pb-2 md:pb-4 md:text-20 text-white text-center">Neem contact met ons op voor een kennismakingsgesprek</p>

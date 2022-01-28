@@ -18,6 +18,28 @@
         text_align: 'center',
       }"
     />
+    <CircleCardPreview
+      :blok="{
+        posts: [
+          {
+            image: {
+              filename: 'https://picsum.photos/1350/431',
+              alt: 'some alt text for image',
+            },
+            title: 'Projecten',
+            url: '/student-corner/projecten/',
+          },
+          {
+            image: {
+              filename: 'https://picsum.photos/1350/432',
+              alt: 'some alt text for image',
+            },
+            title: 'Vacature Bank',
+            url: '/student-corner/vacature-bank/',
+          },
+        ],
+      }"
+    />
   </section>
 </template>
 

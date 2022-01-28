@@ -13,7 +13,7 @@
         >
           <div class="mx-3 w-[150px] h-[150px] lg:w-[300px] lg:h-[300px] lg:mx-8 text-15 text-center">
             <figure
-              class="w-full h-full rounded-md overflow-hidden mb-2.5"
+              class="w-full h-full rounded-md lg:rounded-xl overflow-hidden mb-2.5"
               :class="{ 'drop-shadow-team-member' : blok.type === 'images' }"
             >
               <img
