@@ -40,6 +40,32 @@
         ],
       }"
     />
+    <SocialMediaPreview
+      :blok="{
+        media: [
+          {
+            image: {
+              filename: 'https://picsum.photos/1350/431',
+              alt: 'some alt text for image',
+            },
+            title: 'Global Gossip',
+            sub_title: 'Spotify Embed',
+            description: 'Luister de laatste aflevering van Global Gossip via een Spotify Embed.',
+            type: 'spotify'
+          },
+          {
+            image: {
+              filename: 'https://picsum.photos/1350/431',
+              alt: 'some alt text for image',
+            },
+            title: 'Social Media',
+            sub_title: 'Update',
+            description: 'Volg je ons al op social media? Bekijk onze meest recente social media post en blijft op de hoogte van alle updates die nog komen in de toekomst!!',
+            type: 'instagram'
+          },
+        ],
+      }"
+    />
   </section>
 </template>
 
