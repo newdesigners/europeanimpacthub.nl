@@ -14,13 +14,6 @@
         />
       </figure>
       <h2 class="mb-2">{{ blok.title }}</h2>
-      <p class="mb-4 md:flex-1 lg:text-20 overflow-hidden" v-snip="6">{{ blok.excerpt }}</p>
-      <a 
-        :href="blok.url"
-        class="btn"
-      >
-        Lees meer
-      </a>
     </a>
   </div>
 </template>

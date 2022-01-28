@@ -1,6 +1,7 @@
 <template>
   <article
     class="page-intro bg-cover bg-center w-full min-h-[150px] lg:min-h-[464px] relative bg-primary mb-5 lg:mb-10 2xl:mb-20"
+    :class="{ 'page-intro--blue' : blok.triangle === 'blue' }" 
     :style="{ background: `linear-gradient(0deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.75)), url('${ blok.image.filename }')`}"
   >
     <div class="container">
