@@ -1,20 +1,19 @@
 <template>
   <div>
     <article
-      class="container pb-9 lg:pb-14 relative"
+      class="pb-9 lg:pb-14 relative md:flex md:gap-8"
     >
-      <SocialMediaCard
-        :blok="{
-            image: {
-              filename: 'https://picsum.photos/1350/431',
-              alt: 'some alt text for image',
-            },
-            title: 'Global Gossip',
-            sub_title: 'Spotify Embed',
-            description: 'Luister de laatste aflevering van Global Gossip via een Spotify Embed.',
-            type: 'spotify'
-          }"
-      />
+    <div
+      v-for="(m, i) in blok.media" 
+      :key="i"
+      class="flex flex-col md:w-1/2"
+    >
+    <SocialMediaCard
+      :reverse="i % 2 !== 0"
+      :blok="m"
+    />
+    </div>
+ 
     </article>
   </div>
 </template>
