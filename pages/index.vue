@@ -1,8 +1,14 @@
 <template>
   <section>
     <FullWidthImage />
-    <TitleText />
-    <MenuCards />
+    <TitleText
+      :blok="{
+        type: 'home',
+        title: '‘‘Maak werk van Europa’’',
+        description: 'Europees werken is een vak. European Impact Hub helpt organisaties en (toekomstige) professionals vaardig te maken in de Europese component in hun dagelijkse werk. Met trainingen, onderzoek en evenementen.'
+      }"
+     />
+    <MenuPreview />
     <RecentNewsPreview />
     <Carousel
       :blok="{

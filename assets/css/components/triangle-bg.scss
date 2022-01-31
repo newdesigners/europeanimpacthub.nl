@@ -1,0 +1,25 @@
+.triangle-bg {
+  @apply relative after:absolute after:block after:bg-no-repeat after:w-full after:h-full after:right-0 after:top-0 after:bg-cover;
+
+  &::after {
+    background-image: url('~/assets/images/triangle.svg');
+  }
+
+  &--blue {
+    &::after {
+      background-image: url('~/assets/images/triangle-blue.svg');
+    }
+  }
+
+  &--small {
+    &::after {
+      background-image: url('~/assets/images/triangle-small.svg');
+    }
+  
+    &-blue {
+      &::after {
+        background-image: url('~/assets/images/triangle-small-blue.svg');
+      }
+    }
+  }
+}

@@ -12,7 +12,7 @@
         </a>
       </div>
       <div class="flex justify-between">
-        <div class="w-28 md:w-72">
+        <div class="w-28 md:w-48">
           <Resources type="hhs-logo--white" />
         </div>
         <div>
@@ -20,7 +20,7 @@
             <li>
               <a 
                 href=""
-                class="flex bg-white w-10 h-10 md:w-16 md:h-16 rounded-lg justify-center items-center"
+                class="flex bg-white w-10 h-10 md:w-12 md:h-12 rounded-md justify-center items-center"
               >
                 <Resources class="w-7/12 h-auto" type="icon-linkedin" />
               </a>
@@ -28,7 +28,7 @@
             <li>
               <a 
                 href=""
-                class="flex bg-white w-10 h-10 md:w-16 md:h-16 rounded-lg justify-center items-center"
+                class="flex bg-white w-10 h-10 md:w-12 md:h-12 rounded-md justify-center items-center"
               >
                 <Resources class="w-7/12 h-auto" type="icon-twitter" />
               </a>
@@ -36,7 +36,7 @@
             <li>
               <a 
                 href=""
-                class="flex bg-white w-10 h-10 md:w-16 md:h-16 rounded-lg justify-center items-center"
+                class="flex bg-white w-10 h-10 md:w-12 md:h-12 rounded-md justify-center items-center"
               >
                 <Resources class="w-7/12 h-auto" type="icon-instagram" />
               </a>

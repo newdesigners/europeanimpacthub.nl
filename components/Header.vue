@@ -1,7 +1,7 @@
 <template>
-  <header class="bg-white w-full self-start z-50 delay-100 h-28 transition-height duration-500 ease-in-out sticky top-0 bg-blue-background overflow-hidden xl:h-initial xl:overflow-visible" :class="{ 'bg-primary xl:bg-white h-screen' : isActive }">
-    <div class="h-28 xl:h-initial container flex justify-between flex-wrap xl:justify-start xl:items-center xl:py-9">
-      <div class="h-28 xl:h-initial w-full flex justify-between xl:w-initial">
+  <header class="bg-white w-full self-start z-50 delay-100 h-24 transition-height duration-500 ease-in-out sticky top-0 bg-blue-background overflow-hidden xl:h-initial xl:overflow-visible" :class="{ 'bg-primary xl:bg-white h-screen header--open' : isActive }">
+    <div class="h-24 xl:h-initial container flex justify-between flex-wrap xl:justify-start xl:items-center xl:py-5">
+      <div class="h-24 xl:h-initial w-full flex justify-between xl:w-initial">
         <NuxtLink
           class="flex items-center"
           to="/"
@@ -21,12 +21,12 @@
           />
         </aside>
       </div>
-      <div class="delay-200 transition duration-500 ease-out opacity-0 w-full text-18 text-white xl:flex  xl:flex-1 xl:opacity-100 xl:h-full xl:justify-end" :class="{ 'block opacity-100' : isActive }">
+      <div class="delay-200 transition duration-500 ease-out opacity-0 w-full text-18 text-white xl:flex xl:flex-1 xl:opacity-100 xl:h-full xl:justify-end" :class="{ 'block opacity-100' : isActive }">
         <ul class="xl:flex xl:items-center xl:h-full xl:text-secondary" @click="onClose">
-          <li class="pb-5 xl:pb-0 xl:mr-9"><NuxtLink class="font-gt font-bold text-20 xl:text-23" to="/why-jcr">Kennis & Onderzoek</NuxtLink></li>
-          <li class="pb-5 xl:pb-0 xl:mr-9"><NuxtLink class="font-gt font-bold text-20 xl:text-23" to="/why-jcr">Diensten</NuxtLink></li>
-          <li class="pb-5 xl:pb-0 xl:mr-9"><NuxtLink class="font-gt font-bold text-20 xl:text-23" to="/contact-us">Student Corner</NuxtLink></li>
-          <li class="pb-5 xl:pb-0"><NuxtLink class="font-gt font-bold text-20 xl:text-23" to="/contact-us">Newsroom</NuxtLink></li>
+          <li class="pb-5 xl:pb-0 xl:mr-9"><NuxtLink class="font-gt font-bold text-20 xl:text-23" to="/kennis-en-onderzoek">Kennis & Onderzoek</NuxtLink></li>
+          <li class="pb-5 xl:pb-0 xl:mr-9"><NuxtLink class="font-gt font-bold text-20 xl:text-23" to="/diensten">Diensten</NuxtLink></li>
+          <li class="pb-5 xl:pb-0 xl:mr-9"><NuxtLink class="font-gt font-bold text-20 xl:text-23" to="/student-corner">Student Corner</NuxtLink></li>
+          <li class="pb-5 xl:pb-0"><NuxtLink class="font-gt font-bold text-20 xl:text-23" to="/newsroom">Newsroom</NuxtLink></li>
         </ul>
       </div>
     </div>
@@ -53,3 +53,9 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+.header--open {
+  @apply bg-primary xl:bg-white h-screen !important;
+}
+</style>

@@ -13,6 +13,7 @@ module.exports = {
     extend: {
       spacing: {
         'container': "theme(container.padding.DEFAULT)",
+        'container-lg': "theme(container.padding.lg)",
         '31%': '31%',
         '32%': '32%',
         '48%': '48%',
@@ -45,6 +46,7 @@ module.exports = {
         ],
       }, 
       fontSize: {
+        '10': ['10px', { lineHeight: '13px' }],
         '13': ['13px', { lineHeight: '17px' }],
         '14': ['14px', { lineHeight: '18px' }],
         '15': ['15px', { lineHeight: '19.2px' }],
@@ -58,6 +60,7 @@ module.exports = {
         '28': ['28px', { lineHeight: '42px' }],
         '30': ['30px', { lineHeight: '43px' }],
         '30-logo': ['30px', { lineHeight: '26px' }],
+        '35': ['35px', { lineHeight: '50px' }],
         '36': ['36px', { lineHeight: '54px' }],
         '50': ['50px', { lineHeight: '59px' }],
       },
@@ -65,6 +68,15 @@ module.exports = {
         'initial': 'initial',
       },
       zIndex: {
+        '-1': '-1',
+        '-2': '-2',
+        '-3': '-3',
+        '-4': '-4',
+        '-5': '-5',
+        '-6': '-6',
+        '-7': '-7',
+        '-8': '-8',
+        '-9': '-9',
         '-10': '-10',
         '-20': '-20',
         '-30': '-30',
@@ -78,6 +90,7 @@ module.exports = {
     container: {
       padding: {
         DEFAULT: '20px',
+        lg: '50px',
       },
       center: true,
     },

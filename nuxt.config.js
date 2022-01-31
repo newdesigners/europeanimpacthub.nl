@@ -28,7 +28,13 @@ export default {
     { src: '~/plugins/composition-api.js' },
     { src: '~/plugins/storyblok-rich-text-renderer.js', mode: 'client'},
     { src: '~/plugins/vue-slick-carousel.js', mode: 'client' },
+    { src: '~/plugins/vue-snip.js', mode: 'client' },
+    { src: '~/plugins/storyblok-rich-text-renderer.js'},
   ],
+
+  env: {
+    baseUrl: process.env.HOST_NAME || 'http://localhost:3000'
+  },
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -38,17 +44,27 @@ export default {
     // https://go.nuxtjs.dev/tailwindcss
     '@nuxtjs/tailwindcss',
     '@nuxt/image',
+    '@nuxtjs/moment',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
+    'vue-social-sharing/nuxt',
+    'nuxt-clipboard',
   ],
   image: {
     storyblok: {
       baseURL: 'https://img2.storyblok.com',
     },
+  },
+  moment: {
+    defaultLocale: 'nl',
+    locales: ['nl'],
+  },
+  clipboard: {
+    autoSetContainer: true
   },
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {},
