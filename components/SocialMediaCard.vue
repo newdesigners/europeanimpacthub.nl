@@ -27,13 +27,13 @@
         <aside class="self-end pb-3 lg:pb-5">
           <Resources 
             class="w-[22px] h-[22px] lg:w-[46px] lg:h-[46px]"
-            :class="{ 'relative lg:left-[70%]' : reverse }" 
+            :class="{ 'relative left-1/2 lg:left-[70%]' : reverse }" 
             :type="`icon-${ blok.type }`"
           />
         </aside>
       </div>
       <figure
-        class="w-[42%] h-full  overflow-hidden"
+        class="w-[42%] h-full overflow-hidden"
         :class="{
           'rounded-r-md lg:rounded-r-2xl': !reverse,
           'rounded-r-none rounded-l-md lg:rounded-l-2xl' : reverse,
