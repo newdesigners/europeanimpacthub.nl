@@ -30,7 +30,7 @@ export default {
             filename: 'https://picsum.photos/1350/431',
             alt: 'some alt text for image',
           },
-          url: '/student-corner/projecten/slug_here',
+          url: '/student-corner/vacature-bank/slug_here',
         },
         {
           type: 'job',
@@ -41,7 +41,7 @@ export default {
             filename: 'https://picsum.photos/1350/432',
             alt: 'some alt text for image',
           },
-          url: '/student-corner/projecten/slug_here',
+          url: '/student-corner/vacature-bank/slug_here',
         },
         {
           type: 'job',
@@ -52,7 +52,7 @@ export default {
             filename: 'https://picsum.photos/1350/433',
             alt: 'some alt text for image',
           },
-          url: '/student-corner/projecten/slug_here',
+          url: '/student-corner/vacature-bank/slug_here',
         },
         {
           type: 'job',
@@ -63,7 +63,7 @@ export default {
             filename: 'https://picsum.photos/1350/434',
             alt: 'some alt text for image',
           },
-          url: '/student-corner/projecten/slug_here',
+          url: '/student-corner/vacature-bank/slug_here',
         },
       ],
     }

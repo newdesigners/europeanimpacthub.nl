@@ -75,7 +75,9 @@
       </div>
     </aside>
     <footer class="sm:w-4/5 sm:mx-auto">
-      <h3 class="font-normal text-20 lg:text-30 text-black pb-3 lg:pb-5">Andere projecten</h3>
+      <h3 v-if="blok.type === 'project'" class="font-normal text-20 lg:text-30 text-black pb-3 lg:pb-5">Andere projecten</h3>
+      <h3 v-if="blok.type === 'job'" class="font-normal text-20 lg:text-30 text-black pb-3 lg:pb-5">Andere vacatures</h3>
+      <h3 v-if="blok.type === 'news'" class="font-normal text-20 lg:text-30 text-black pb-3 lg:pb-5">Recente nieuws</h3>
       <ul class="xl:flex gap-5">
         <li
           v-for="(p, i) in projects"
@@ -83,7 +85,7 @@
           class="pb-5"
         >
           <NuxtLink
-            :to="`/student-corner/project/another_slug_here_${i}`"
+            :to="`/student-corner/projecten/another_slug_here_${i}`"
             class="flex"
           >
             <article class="flex gap-3.5 items-center lg:items-start">
