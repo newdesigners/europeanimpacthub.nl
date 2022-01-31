@@ -3,6 +3,10 @@
     @apply pb-4 lg:pb-8;
   }
 
+  div p:last-of-type {
+    @apply mb-0 pb-0;
+  }
+
   p {
     @apply lg:text-25;
   }

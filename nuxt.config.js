@@ -32,6 +32,10 @@ export default {
     { src: '~/plugins/storyblok-rich-text-renderer.js'},
   ],
 
+  env: {
+    baseUrl: process.env.HOST_NAME || 'http://localhost:3000'
+  },
+
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
 
@@ -47,6 +51,8 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
+    'vue-social-sharing/nuxt',
+    'nuxt-clipboard',
   ],
   image: {
     storyblok: {
@@ -56,6 +62,9 @@ export default {
   moment: {
     defaultLocale: 'nl',
     locales: ['nl'],
+  },
+  clipboard: {
+    autoSetContainer: true
   },
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {},

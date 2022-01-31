@@ -1,5 +1,5 @@
 <template>
-  <div class="container pb-16" v-editable="blok">
+  <div class="container pb-16 lg:pb-24">
     <SingleSharePost :blok="blok" />
   </div>
 </template>
@@ -18,6 +18,7 @@ export default {
           alt: 'some alt text here',
         },
         type: 'service',
+        url: 'http://google.com'
       },
     };
   },
