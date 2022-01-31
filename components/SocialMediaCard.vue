@@ -6,9 +6,9 @@
     <a
       class="flex h-[228px] lg:h-[448px]"
       :class="{ 'flex-row-reverse' : reverse }"
+      rel="noopener noreferrer"
       :href="blok.url"
     >
-
       <div
         class="triangle-bg flex-1 pt-5 lg:pt-10 relative flex flex-col after:w-[74px] lg:after:w-[145px] after:-z-1"
         :class="{

@@ -40,6 +40,7 @@ export default {
     // https://go.nuxtjs.dev/tailwindcss
     '@nuxtjs/tailwindcss',
     '@nuxt/image',
+    '@nuxtjs/moment',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -51,6 +52,10 @@ export default {
     storyblok: {
       baseURL: 'https://img2.storyblok.com',
     },
+  },
+  moment: {
+    defaultLocale: 'nl',
+    locales: ['nl'],
   },
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {},

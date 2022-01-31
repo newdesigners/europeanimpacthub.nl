@@ -51,17 +51,19 @@
             title: 'Global Gossip',
             sub_title: 'Spotify Embed',
             description: 'Luister de laatste aflevering van Global Gossip via een Spotify Embed.',
-            type: 'spotify'
+            type: 'spotify',
+            url: 'https://www.google.com/'
           },
           {
             image: {
-              filename: 'https://picsum.photos/1350/431',
+              filename: 'https://picsum.photos/1350/432',
               alt: 'some alt text for image',
             },
             title: 'Social Media',
             sub_title: 'Update',
             description: 'Volg je ons al op social media? Bekijk onze meest recente social media post en blijft op de hoogte van alle updates die nog komen in de toekomst!!',
-            type: 'instagram'
+            type: 'instagram',
+            url: 'https://www.google.com/'
           },
         ],
       }"

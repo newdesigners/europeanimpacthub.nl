@@ -72,11 +72,13 @@ li:after {
   content: ' > ';
   @apply inline text-black;
 }
+
 li:last-child:after {
   content: '';
 }
+
 li a {
-  @apply text-black no-underline;
+  @apply text-black no-underline hover:text-primary;
 }
 
 li a.nuxt-link-exact-active.nuxt-link-active {

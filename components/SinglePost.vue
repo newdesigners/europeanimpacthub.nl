@@ -25,6 +25,7 @@
       </div>
     </article>
     <footer class="mx-auto md:w-3/5">
+      <!-- Todo: has to be modular. change people -->
       <Banner v-if="blok.type === 'service'"  />
     </footer>
   </div>
