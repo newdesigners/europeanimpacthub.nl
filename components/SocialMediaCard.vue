@@ -28,7 +28,7 @@
           <Resources 
             class="w-[22px] h-[22px] lg:w-[46px] lg:h-[46px]"
             :class="{ 'relative left-1/2 lg:left-[70%]' : reverse }" 
-            :type="`icon-${ blok.type }`"
+            :type="`icon-${ blok.type }--white`"
           />
         </aside>
       </div>
