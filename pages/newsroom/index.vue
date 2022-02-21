@@ -8,13 +8,13 @@
         <ul
           class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-10"
         >
-          <!-- <li
-            v-for="(n, i) in news"
+          <li
+            v-for="(n, i) in newsPosts"
             :key="i"
             :class="{ 'col-span-full': i === 0 }"
           >
             <NewsCard :class="{ 'news-card--first': i === 0 }" :blok="n" />
-          </li> -->
+          </li>
         </ul>
       </div>
     </div>
@@ -24,82 +24,6 @@
 <script>
 import { storyBlocksContentTransformers } from "../../utils/story-bloks-content-transformer";
 export default {
-  // data() {
-  //   return {
-  //     news: [
-  //       {
-  //         category: "Thema",
-  //         name: "De titel van deze kaart (nieuws) of een zin die de inhoud beschrijft.",
-  //         date: "2021-05-06T11:00:23.869Z",
-  //         image: {
-  //           filename: "https://picsum.photos/1350/431",
-  //           alt: "some alt text for image",
-  //         },
-  //         url: "/newsroom/slug_here",
-  //       },
-  //       {
-  //         category: "Thema",
-  //         name: "De titel van deze kaart (nieuws) of een zin die de inhoud beschrijft.",
-  //         date: "2021-05-06T11:00:23.869Z",
-  //         image: {
-  //           filename: "https://picsum.photos/1350/432",
-  //           alt: "some alt text for image",
-  //         },
-  //         url: "/newsroom/slug_here",
-  //       },
-  //       {
-  //         category: "Thema",
-  //         name: "De titel van deze kaart (nieuws) of een zin die de inhoud beschrijft.",
-  //         date: "2021-05-06T11:00:23.869Z",
-  //         image: {
-  //           filename: "https://picsum.photos/1350/433",
-  //           alt: "some alt text for image",
-  //         },
-  //         url: "/newsroom/slug_here",
-  //       },
-  //       {
-  //         category: "Thema",
-  //         name: "De titel van deze kaart (nieuws) of een zin die de inhoud beschrijft.",
-  //         date: "2021-05-06T11:00:23.869Z",
-  //         image: {
-  //           filename: "https://picsum.photos/1350/434",
-  //           alt: "some alt text for image",
-  //         },
-  //         url: "/newsroom/slug_here",
-  //       },
-  //       {
-  //         category: "Thema",
-  //         name: "De titel van deze kaart (nieuws) of een zin die de inhoud beschrijft.",
-  //         date: "2021-05-06T11:00:23.869Z",
-  //         image: {
-  //           filename: "https://picsum.photos/1350/435",
-  //           alt: "some alt text for image",
-  //         },
-  //         url: "/newsroom/slug_here",
-  //       },
-  //       {
-  //         category: "Thema",
-  //         name: "De titel van deze kaart (nieuws) of een zin die de inhoud beschrijft.",
-  //         date: "2021-05-06T11:00:23.869Z",
-  //         image: {
-  //           filename: "https://picsum.photos/1350/436",
-  //           alt: "some alt text for image",
-  //         },
-  //         url: "/newsroom/slug_here",
-  //       },
-  //       {
-  //         category: "Thema",
-  //         name: "De titel van deze kaart (nieuws) of een zin die de inhoud beschrijft.",
-  //         date: "2021-05-06T11:00:23.869Z",
-  //         image: {
-  //           filename: "https://picsum.photos/1350/437",
-  //           alt: "some alt text for image",
-  //         },
-  //         url: "/newsroom/slug_here",
-  //       },
-  //     ],
-  //   };
-  // },
   async asyncData({ $storyapi }) {
     const data = storyBlocksContentTransformers(
       (
@@ -109,12 +33,29 @@ export default {
       ).data.story.content.blocks
     );
 
+    console.log(
+      (
+        await $storyapi.get("cdn/stories?starts_with=newsroom", {
+          version: Date.now(),
+        })
+      ).data.stories
+    );
+
     // get all newsroom posts
     data.newsPosts = (
       await $storyapi.get("cdn/stories?starts_with=newsroom", {
         version: Date.now(),
       })
-    ).data.stories.filter((story) => story.is_startpage === false);
+    ).data.stories
+      .filter((story) => story.content?.component === "post")
+      .map((story) => ({
+        category: story.content.Tag,
+        date: story.first_published_at,
+        url: story.full_slug,
+        image: story.content.image,
+        article: story.content.article,
+        name: story.content.title,
+      }));
 
     return { ...data };
   },
