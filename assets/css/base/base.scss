@@ -67,3 +67,22 @@
     display: none;
   }
 }
+
+.richtext {
+  h1 {
+    margin-bottom: 20px;
+    font-size: 50px;
+    font-style: italic;
+  }
+
+  p {
+    font-size: 25px;
+    font-weight: 500;
+  }
+
+  &--white {
+    p {
+      color: white !important;
+    }
+  }
+}
