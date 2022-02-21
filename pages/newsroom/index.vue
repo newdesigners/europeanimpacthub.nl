@@ -33,14 +33,6 @@ export default {
       ).data.story.content.blocks
     );
 
-    console.log(
-      (
-        await $storyapi.get("cdn/stories?starts_with=newsroom", {
-          version: Date.now(),
-        })
-      ).data.stories
-    );
-
     // get all newsroom posts
     data.newsPosts = (
       await $storyapi.get("cdn/stories?starts_with=newsroom", {
