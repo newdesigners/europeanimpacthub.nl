@@ -1,32 +1,60 @@
 <template>
   <div class="container pb-16 lg:pb-24">
-    <SingleSharePost :blok="blok" />
+    <SingleSharePost :blok="blok" :projects="jobs" />
   </div>
 </template>
  
+
 <script>
 export default {
-  data() {
+  async asyncData({ $storyapi, params }) {
+    const data = (
+      await $storyapi.get(
+        "cdn/stories/student-corner/vacature-bank/" + params.slug,
+        {
+          version: Date.now(),
+        }
+      )
+    ).data.story;
+
+    data.jobs = (
+      await $storyapi.get(
+        "cdn/stories?starts_with=student-corner/vacature-bank",
+        {
+          version: Date.now(),
+        }
+      )
+    ).data.stories
+      .filter(
+        (story) =>
+          story.content?.component === "post" && story.slug !== data.slug
+      )
+      .map((story) => ({
+        category: story.content.Tag,
+        date: story.first_published_at,
+        slug: story.slug,
+        image: story.content.image,
+        article: story.content.article,
+        name: story.content.title,
+        type: "job",
+      }))
+      .sort((a, b) =>
+        new Date(a.date).valueOf() > new Date(b.date).valueOf() ? -1 : 1
+      );
+
+    console.log(data.jobs);
     return {
       blok: {
-        category: 'Stage',
-        date: '2011-10-05T14:48:00.000Z',
-        title: 'De titel van deze kaart (project) of een zin die de inhoud beschrijft.',
-        excerpt: 'Hoe groot is het verwachte marktaandeel in Noordrhein Westfalen? Welke concurrenten kan je verwachten in Hessen? Heeft u de juiste middelen om de kenmerken van uw toekomstige klanten te identificeren en beschrijven? De German Desk biedt ambitieuze studenten die met jouw eisen en behoeften aan de slag willen. De German Desk is een innovatief Living Lab binnen De Haagse Hogeschool. Daarnaast is de German Desk een minor bij de European Studies. Hier worden studenten opgeleid tot junior accountmanagers voor het Duits-Nederlandse werkveld.',
-        image: {
-          filename: 'https://picsum.photos/1350/430',
-          alt: 'some alt text here',
-        },
-        type: 'job',
-        url: 'http://google.com'
+        category: data.content.Tag,
+        date: data.published_at,
+        title: data.content.title,
+        excerpt: data.content.excerpt,
+        article: data.content.article,
+        image: data.content.image,
+        type: "job",
       },
+      jobs: data.jobs,
     };
   },
-  // props: {
-  //   blok: {
-  //     type: Object,
-  //     required: true,
-  //   },
-  // },
 };
 </script>

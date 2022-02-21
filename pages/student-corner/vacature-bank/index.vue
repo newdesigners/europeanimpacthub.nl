@@ -3,13 +3,10 @@
     <aside class="container text-15 pb-5 lg:pb-9">
       <Breadcrumb />
     </aside>
-    <article class="container pb-12 lg:pb-24">
-      <ul class="grid grid-cols-1 md:grid-cols-2 gap-7">
-        <li
-          v-for="(card, index) in cards"
-          :key="index"
-        >
-          <ShareCard :blok="card"/> 
+    <article class="pb-12 lg:pb-24">
+      <ul class="container grid grid-cols-1 md:grid-cols-2 gap-7">
+        <li v-for="(card, index) in projects" :key="index">
+          <ShareCard :blok="card" />
         </li>
       </ul>
     </article>
@@ -18,55 +15,36 @@
 
 <script>
 export default {
-  data() {
-    return {
-      cards: [
+  async asyncData({ $storyapi }) {
+    const data = (
+      await $storyapi.get("cdn/stories/student-corner/vacature-bank/", {
+        version: Date.now(),
+      })
+    ).data.story.content;
+
+    data.projects = (
+      await $storyapi.get(
+        "cdn/stories?starts_with=student-corner/vacature-bank",
         {
-          type: 'job',
-          category : 'Stage',
-          name: 'Project German Desk',
-          date: '2021-05-06T11:00:23.869Z',
-          image: {
-            filename: 'https://picsum.photos/1350/431',
-            alt: 'some alt text for image',
-          },
-          url: '/student-corner/vacature-bank/slug_here',
-        },
-        {
-          type: 'job',
-          category : 'Student Assisent',
-          name: 'Project German Desk',
-          date: '2021-05-06T11:00:23.869Z',
-          image: {
-            filename: 'https://picsum.photos/1350/432',
-            alt: 'some alt text for image',
-          },
-          url: '/student-corner/vacature-bank/slug_here',
-        },
-        {
-          type: 'job',
-          category : 'Vrijwillege taken',
-          name: 'Project German Desk',
-          date: '2021-05-06T11:00:23.869Z',
-          image: {
-            filename: 'https://picsum.photos/1350/433',
-            alt: 'some alt text for image',
-          },
-          url: '/student-corner/vacature-bank/slug_here',
-        },
-        {
-          type: 'job',
-          category : 'Stage',
-          name: 'Project German Desk',
-          date: '2021-05-06T11:00:23.869Z',
-          image: {
-            filename: 'https://picsum.photos/1350/434',
-            alt: 'some alt text for image',
-          },
-          url: '/student-corner/vacature-bank/slug_here',
-        },
-      ],
-    }
+          version: Date.now(),
+        }
+      )
+    ).data.stories
+      .filter((story) => story.content?.component === "post")
+      .map((story) => ({
+        category: story.content.Tag,
+        date: story.first_published_at,
+        url: story.slug,
+        image: story.content.image,
+        article: story.content.article,
+        name: story.content.title,
+        type: "job",
+      }))
+      .sort((a, b) =>
+        new Date(a.date).valueOf() > new Date(b.date).valueOf() ? -1 : 1
+      );
+
+    return { ...data };
   },
 };
 </script>

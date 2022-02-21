@@ -47,7 +47,10 @@ export default {
         image: story.content.image,
         article: story.content.article,
         name: story.content.title,
-      }));
+      }))
+      .sort((a, b) =>
+        new Date(a.date).valueOf() > new Date(b.date).valueOf() ? -1 : 1
+      );
 
     return { ...data };
   },

@@ -8,7 +8,8 @@ export const storyBlocksContentTransformers = (content) => {
                 contentKey = value[key].replace(/ /g, "");
             }
         })
-        if (contentKey) data[contentKey] = value;
+        if (contentKey && data[contentKey]) data[contentKey + "_1"] = value;
+        else if (contentKey) data[contentKey] = value;
     })
 
     return data;
