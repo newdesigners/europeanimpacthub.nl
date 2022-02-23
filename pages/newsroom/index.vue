@@ -24,6 +24,26 @@
 <script>
 import { storyBlocksContentTransformers } from "../../utils/story-bloks-content-transformer";
 export default {
+  head(ctx) {
+    const { title, description, image } = ctx._data.SEO;
+    return {
+      title,
+      meta: [
+        {
+          hid: "description",
+          name: "description",
+          content: description,
+        },
+        image?.id
+          ? {
+              hid: "og:image",
+              property: "og:image",
+              content: image.filename,
+            }
+          : {},
+      ],
+    };
+  },
   async asyncData({ $storyapi }) {
     const data = storyBlocksContentTransformers(
       (

@@ -22,6 +22,26 @@
 
 <script>
 export default {
+  head({ _data }) {
+    const { title, description, image } = _data.SEO;
+    return {
+      title,
+      meta: [
+        {
+          hid: "description",
+          name: "description",
+          content: description,
+        },
+        image?.id
+          ? {
+              hid: "og:image",
+              property: "og:image",
+              content: image.filename,
+            }
+          : {},
+      ],
+    };
+  },
   async asyncData({ $storyapi }) {
     const data = (
       await $storyapi.get("cdn/stories/student-corner/projecten/", {
@@ -51,8 +71,6 @@ export default {
       .sort((a, b) =>
         new Date(a.date).valueOf() > new Date(b.date).valueOf() ? -1 : 1
       );
-
-    console.log(data);
 
     return { ...data };
   },

@@ -15,6 +15,26 @@
 
 <script>
 export default {
+  head({ _data }) {
+    const { title, description, image } = _data.SEO;
+    return {
+      title,
+      meta: [
+        {
+          hid: "description",
+          name: "description",
+          content: description,
+        },
+        image?.id
+          ? {
+              hid: "og:image",
+              property: "og:image",
+              content: image.filename,
+            }
+          : {},
+      ],
+    };
+  },
   async asyncData({ $storyapi }) {
     const data = (
       await $storyapi.get("cdn/stories/student-corner/vacature-bank/", {

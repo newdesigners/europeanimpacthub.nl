@@ -4,7 +4,7 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'europeanimpacthub.nl',
+    title: 'European Impact Hub',
     htmlAttrs: {
       lang: 'nl-NL'
     },
