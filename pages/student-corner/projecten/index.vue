@@ -7,16 +7,13 @@
       <TitleText
         :blok="{
           type: 'secondary',
-          title: 'Projecten',
-          description: 'Een rapport of publicatie is bij ons nooit het einddoel van een onderzoek. Kennisopbouw is er om verschil te maken. Onze onderzoeksprojecten zijn gericht op het bereiken van impact op de werkvloer. Hiervoor werken we veelvuldig samen met organisaties uit de praktijk (publiek, privaat en NGO) en het hoger onderwijs. In al onze projecten kijken we naar een Europese component van dagelijks werk. Benieuwd naar wat we zoal doen? Hieronder vind je een overzicht van onze belangrijkste projecten.'
+          title: title,
+          description: description,
         }"
       />
       <ul class="container grid grid-cols-1 md:grid-cols-2 gap-7">
-        <li
-          v-for="(card, index) in cards"
-          :key="index"
-        >
-          <ShareCard :blok="card"/> 
+        <li v-for="(card, index) in projects" :key="index">
+          <ShareCard :blok="card" />
         </li>
       </ul>
     </article>
@@ -25,55 +22,57 @@
 
 <script>
 export default {
-  data() {
+  head({ _data }) {
+    const { title, description, image } = _data.SEO;
     return {
-      cards: [
+      title,
+      meta: [
         {
-          type: 'project',
-          category : 'Minor',
-          name: 'Project German Desk',
-          date: '2021-05-06T11:00:23.869Z',
-          image: {
-            filename: 'https://picsum.photos/1350/431',
-            alt: 'some alt text for image',
-          },
-          url: '/student-corner/projecten/slug_here',
+          hid: "description",
+          name: "description",
+          content: description,
         },
-        {
-          type: 'project',
-          category : 'Minor',
-          name: 'Project German Desk',
-          date: '2021-05-06T11:00:23.869Z',
-          image: {
-            filename: 'https://picsum.photos/1350/432',
-            alt: 'some alt text for image',
-          },
-          url: '/student-corner/projecten/slug_here',
-        },
-        {
-          type: 'project',
-          category : 'Minor',
-          name: 'Project German Desk',
-          date: '2021-05-06T11:00:23.869Z',
-          image: {
-            filename: 'https://picsum.photos/1350/433',
-            alt: 'some alt text for image',
-          },
-          url: '/student-corner/projecten/slug_here',
-        },
-        {
-          type: 'project',
-          category : 'Minor',
-          name: 'Project German Desk',
-          date: '2021-05-06T11:00:23.869Z',
-          image: {
-            filename: 'https://picsum.photos/1350/434',
-            alt: 'some alt text for image',
-          },
-          url: '/student-corner/projecten/slug_here',
-        },
+        image?.id
+          ? {
+              hid: "og:image",
+              property: "og:image",
+              content: image.filename,
+            }
+          : {},
       ],
-    }
+    };
+  },
+  async asyncData({ $storyapi }) {
+    const data = (
+      await $storyapi.get("cdn/stories/student-corner/projecten/", {
+        version: Date.now(),
+      })
+    ).data.story.content;
+
+    data.projects = (
+      await $storyapi.get("cdn/stories?starts_with=student-corner/projecten", {
+        version: Date.now(),
+      })
+    ).data.stories
+      .filter(
+        (story) =>
+          story.content?.component === "post" &&
+          story.full_slug !== data.full_slug
+      )
+      .map((story) => ({
+        category: story.content.Tag,
+        date: story.first_published_at,
+        url: story.slug,
+        image: story.content.image,
+        article: story.content.article,
+        name: story.content.title,
+        type: "project",
+      }))
+      .sort((a, b) =>
+        new Date(a.date).valueOf() > new Date(b.date).valueOf() ? -1 : 1
+      );
+
+    return { ...data };
   },
 };
 </script>

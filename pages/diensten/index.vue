@@ -2,74 +2,74 @@
   <section>
     <PageIntro
       :blok="{
-        image: {
-          filename: 'https://picsum.photos/1440/900'
-        },
-        title: 'Kennis & Onderzoek',
-        description: 'Als lectoraat op de Haagse Hogeschool doen wij onderzoek naar de praktijk van Europees werken.'
+        image: Hero.backgroundImage,
+        title: Hero.name,
+        description: Hero.Description,
       }"
     />
-    <RichText
-      :blok="{
-        //Data coming rich text editor
-        content: `
-          <p>Hoe blijf ik op de hoogte over wat er speelt in Brussel in mijn vakgebied? Hoe raakt nieuwe EU-wetgeving mijn bedrijf. Hoe kan ik invloed uitoefenen op Europees beleid? European Impact Hub biedt verschillende producten die Europees werken vergemakkelijken.</p>
-          <p>Het overzicht hier onder geeft een indruk van ons aanbod voor Europese inspiratie en Europese oplossingen</p>
-          <ul>
-            <li>EU-scan - Europees werken in kaart gebracht</li>
-            <li>Beleidsonderzoek en evaluatie</li>
-            <li>Student consultancy</li>
-            <li>Gastcollege (serie)</li>
-            <li>Trainingen voor professionals</li>
-          </ul>
-        `
-      }"
-    />
+
+    <div class="max-w-[800px] mx-auto text-center richtext mb-14">
+      <rich-text-renderer :document="richText.richText" />
+    </div>
+
     <PostPreview
       :blok="{
-        posts: [
-          {
-            image: {
-              filename: 'https://picsum.photos/1350/431',
-              alt: 'some alt text for image',
-            },
-            title: 'Beleidsonderzoek & evaluatie',
-            excerpt: 'Met één been in de wereld van onderzoek & onderwijs, met het andere been in de werkpraktijk: dat kenmerkt de teamleden van European Impact Hub. Deze brugfunctie geeft ons de ideale uitgangspositie om kennis in te zetten voor het verbeteren of veranderen van Europees werken. We doen dit voor overheden, ondernemingen en belangenorganisaties.',
-            url: '/diensten/slug_here',
-          },
-          {
-            image: {
-              filename: 'https://picsum.photos/1350/432',
-              alt: 'some alt text for image',
-            },
-            title: 'Beleidsonderzoek & evaluatie',
-            excerpt: 'Met één been in de wereld van onderzoek & onderwijs, met het andere been in de werkpraktijk: dat kenmerkt de teamleden van European Impact Hub. Deze brugfunctie geeft ons de ideale uitgangspositie om kennis in te zetten voor het verbeteren of veranderen van Europees werken. We doen dit voor overheden, ondernemingen en belangenorganisaties.',
-            url: '/diensten/slug_here',
-          },
-          {
-            image: {
-              filename: 'https://picsum.photos/1350/433',
-              alt: 'some alt text for image',
-            },
-            title: 'Beleidsonderzoek & evaluatie',
-            excerpt: 'Met één been in de wereld van onderzoek & onderwijs, met het andere been in de werkpraktijk: dat kenmerkt de teamleden van European Impact Hub. Deze brugfunctie geeft ons de ideale uitgangspositie om kennis in te zetten voor het verbeteren of veranderen van Europees werken. We doen dit voor overheden, ondernemingen en belangenorganisaties.',
-            url: '/diensten/slug_here',
-          },
-          {
-            image: {
-              filename: 'https://picsum.photos/1350/434',
-              alt: 'some alt text for image',
-            },
-            title: 'Beleidsonderzoek & evaluatie',
-            excerpt: 'Met één been in de wereld van onderzoek & onderwijs, met het andere been in de werkpraktijk: dat kenmerkt de teamleden van European Impact Hub. Deze brugfunctie geeft ons de ideale uitgangspositie om kennis in te zetten voor het verbeteren of veranderen van Europees werken. We doen dit voor overheden, ondernemingen en belangenorganisaties.',
-            url: '/diensten/slug_here',
-          },
-        ],
+        posts: posts,
       }"
     />
   </section>
 </template>
-
 <script>
-export default {};
+import { storyBlocksContentTransformers } from "../../utils/story-bloks-content-transformer";
+export default {
+  head({ _data }) {
+    const { title, description, image } = _data.SEO;
+    return {
+      title,
+      meta: [
+        {
+          hid: "description",
+          name: "description",
+          content: description,
+        },
+        image?.id
+          ? {
+              hid: "og:image",
+              property: "og:image",
+              content: image.filename,
+            }
+          : {},
+      ],
+    };
+  },
+  async asyncData({ $storyapi }) {
+    const data = storyBlocksContentTransformers(
+      (
+        await $storyapi.get("cdn/stories/diensten", {
+          version: Date.now(),
+        })
+      ).data.story.content.blocks
+    );
+
+    data.posts = (
+      await $storyapi.get("cdn/stories?starts_with=diensten/", {
+        version: Date.now(),
+      })
+    ).data.stories
+      .filter((story) => story.content?.component === "dienst")
+      .map((story) => ({
+        url: story.full_slug,
+        image: story.content.image,
+        excerpt: story.content.excerpt,
+        title: story.content.title,
+      }))
+      .sort((a, b) =>
+        new Date(a.date).valueOf() > new Date(b.date).valueOf() ? -1 : 1
+      );
+
+    return {
+      ...data,
+    };
+  },
+};
 </script>

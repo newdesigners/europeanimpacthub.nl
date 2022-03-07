@@ -4,7 +4,7 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'europeanimpacthub.nl',
+    title: 'European Impact Hub',
     htmlAttrs: {
       lang: 'nl-NL'
     },
@@ -26,10 +26,10 @@ export default {
   plugins: [
     { src: '~/plugins/vue-tasty-burgers.js', mode: 'client' },
     { src: '~/plugins/composition-api.js' },
-    { src: '~/plugins/storyblok-rich-text-renderer.js', mode: 'client'},
+    { src: '~/plugins/storyblok-rich-text-renderer.js', mode: 'client' },
     { src: '~/plugins/vue-slick-carousel.js', mode: 'client' },
     { src: '~/plugins/vue-snip.js', mode: 'client' },
-    { src: '~/plugins/storyblok-rich-text-renderer.js'},
+    { src: '~/plugins/storyblok-rich-text-renderer.js' },
   ],
 
   env: {
@@ -53,6 +53,13 @@ export default {
     '@nuxtjs/axios',
     'vue-social-sharing/nuxt',
     'nuxt-clipboard',
+    [
+      "@storyblok/nuxt",
+      {
+        accessToken: "xVQgyAgzqeM0kPWUFx61Lwtt",
+        cacheProvider: "memory",
+      },
+    ],
   ],
   image: {
     storyblok: {
@@ -68,6 +75,10 @@ export default {
   },
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {},
+
+  server: {
+    port: 3333
+  },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
