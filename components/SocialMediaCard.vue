@@ -1,6 +1,6 @@
 <template>
   <div
-    class="mb-6 w-[95%] md:w-full h-full relative after:block after:absolute after:-z-10 after:bg-secondary after:top-0 after:-left-full after:right-0 after:bottom-0 after:rounded-r-md lg:after:rounded-r-2xl"
+    class="overflow-x-hidden mb-6 w-[95%] md:w-full h-full relative after:block after:absolute after:-z-10 after:bg-secondary after:top-0 after:-left-full after:right-0 after:bottom-0 after:rounded-r-md lg:after:rounded-r-2xl"
     :class="{ 'after:bg-red after:rounded-l-md lg:after:rounded-l-2xl after:left-0 after:-right-full self-end' : reverse }"
   >
     <a
