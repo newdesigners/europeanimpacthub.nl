@@ -32,6 +32,7 @@
 
   p {
     @apply font-aktiv font-normal text-13 text-secondary lg:text-20;
+    line-height: 160% !important;
   }
 
   h1,
@@ -78,11 +79,13 @@
   p {
     font-size: 25px;
     font-weight: 500;
+    line-height: 160% !important;
   }
 
   &--white {
     p {
       color: white !important;
+      line-height: 160% !important;
     }
   }
 }
