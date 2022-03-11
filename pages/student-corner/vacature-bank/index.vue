@@ -14,6 +14,8 @@
 </template>
 
 <script>
+import { storyBlocksContentTransformers } from "../../../utils/story-bloks-content-transformer";
+
 export default {
   head({ _data }) {
     const { title, description, image } = _data.SEO;
@@ -63,6 +65,9 @@ export default {
       .sort((a, b) =>
         new Date(a.date).valueOf() > new Date(b.date).valueOf() ? -1 : 1
       );
+
+    const blockContent = storyBlocksContentTransformers(data.blocks);
+    data.SEO = blockContent.SEO;
 
     return { ...data };
   },
