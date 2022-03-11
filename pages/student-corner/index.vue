@@ -38,7 +38,7 @@
             sub_title: spotifyBlock.subtitle,
             description: spotifyBlock.content,
             type: 'spotify',
-            url: spotifyBlock.url?.cached_url,
+            url: spotifyBlock.url.cached_url,
           },
           {
             image: mediaBlock.image,
@@ -46,7 +46,7 @@
             sub_title: mediaBlock.subtitle,
             description: mediaBlock.content,
             type: 'instagram',
-            url: mediaBlock.url?.cached_url,
+            url: mediaBlock.url.cached_url,
           },
         ],
       }"
