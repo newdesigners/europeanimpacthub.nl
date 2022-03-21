@@ -44,6 +44,30 @@ export default {
       ],
     };
   },
+  mounted() {
+    const self = this;
+    this.$storybridge(() => {
+      const storyblokInstance = new StoryblokBridge();
+
+      // Use the input event for instant update of content
+      storyblokInstance.on("input", (event) => {
+        const data = storyBlocksContentTransformers(event.story.content.body);
+        Object.keys(data).forEach((key) => {
+          console.log("Mapping", key);
+          self[key] = Object.assign({}, data[key]);
+        });
+      });
+
+      // Use the bridge to listen the events
+      storyblokInstance.on(["published", "change"], (event) => {
+        // window.location.reload()
+        this.$nuxt.$router.go({
+          path: this.$nuxt.$router.currentRoute,
+          force: true,
+        });
+      });
+    });
+  },
   async asyncData({ $storyapi }) {
     const data = storyBlocksContentTransformers(
       (

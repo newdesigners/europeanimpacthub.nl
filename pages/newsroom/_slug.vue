@@ -6,7 +6,45 @@
  
 
 <script>
+function formatData(data) {
+  return {
+    category: data.content.Tag,
+    date: data.published_at,
+    title: data.content.title,
+    excerpt: data.content.excerpt,
+    article: data.content.article,
+    image: data.content.image,
+    type: "news",
+    contactPersons: data.content.contactPersons,
+  };
+}
 export default {
+  data() {
+    return {
+      blok: {},
+    };
+  },
+  mounted() {
+    this.$storybridge(() => {
+      const storyblokInstance = new StoryblokBridge();
+
+      // Use the input event for instant update of content
+      storyblokInstance.on("input", (event) => {
+        if (event.story.id === this.story.id) {
+          this.blok = formatData(event.story);
+        }
+      });
+
+      // Use the bridge to listen the events
+      storyblokInstance.on(["published", "change"], (event) => {
+        // window.location.reload()
+        this.$nuxt.$router.go({
+          path: this.$nuxt.$router.currentRoute,
+          force: true,
+        });
+      });
+    });
+  },
   head({ _data }) {
     const { title, excerpt, image } = _data.blok;
     return {
@@ -28,11 +66,9 @@ export default {
     };
   },
   async asyncData({ $storyapi, params }) {
-    const data = (
-      await $storyapi.get("cdn/stories/newsroom/" + params.slug, {
-        version: Date.now(),
-      })
-    ).data.story;
+    const result = await $storyapi.get("cdn/stories/newsroom/" + params.slug, {
+      version: Date.now(),
+    });
 
     const newsPosts = (
       await $storyapi.get("cdn/stories?starts_with=newsroom", {
@@ -42,7 +78,7 @@ export default {
       .filter(
         (story) =>
           story.content?.component === "post" &&
-          story.full_slug !== data.full_slug
+          story.full_slug !== result.data.story.full_slug
       )
       .map((story) => {
         return {
@@ -60,15 +96,8 @@ export default {
       );
 
     return {
-      blok: {
-        category: data.content.Tag,
-        date: data.published_at,
-        title: data.content.title,
-        excerpt: data.content.excerpt,
-        article: data.content.article,
-        image: data.content.image,
-        type: "news",
-      },
+      story: result.data.story,
+      blok: formatData(result.data.story),
       projects: newsPosts,
     };
   },
