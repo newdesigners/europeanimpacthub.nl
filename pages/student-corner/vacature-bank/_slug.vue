@@ -6,6 +6,17 @@
  
 
 <script>
+function formatData(data) {
+  return {
+    category: data.content.Tag,
+    date: data.published_at,
+    title: data.content.title,
+    excerpt: data.content.excerpt,
+    article: data.content.article,
+    image: data.content.image,
+    type: "job",
+  };
+}
 export default {
   head({ _data }) {
     const { title, excerpt, image } = _data.blok;
@@ -27,17 +38,34 @@ export default {
       ],
     };
   },
-  async asyncData({ $storyapi, params }) {
-    const data = (
-      await $storyapi.get(
-        "cdn/stories/student-corner/vacature-bank/" + params.slug,
-        {
-          version: Date.now(),
-        }
-      )
-    ).data.story;
+  mounted() {
+    this.$storybridge(() => {
+      const storyblokInstance = new StoryblokBridge();
 
-    data.jobs = (
+      // Use the input event for instant update of content
+      storyblokInstance.on("input", (event) => {
+        if (event.story.id === this.story.id) {
+          this.blok = formatData(event.story);
+        }
+      });
+
+      // Use the bridge to listen the events
+      storyblokInstance.on(["published", "change"], (event) => {
+        // window.location.reload()
+        this.$nuxt.$router.go({
+          path: this.$nuxt.$router.currentRoute,
+          force: true,
+        });
+      });
+    });
+  },
+  async asyncData({ $storyapi, params }) {
+    const result = await $storyapi.get(
+      "cdn/stories/student-corner/vacature-bank/" + params.slug,
+      { version: Date.now() }
+    );
+
+    result.data.story.jobs = (
       await $storyapi.get(
         "cdn/stories?starts_with=student-corner/vacature-bank",
         {
@@ -47,7 +75,8 @@ export default {
     ).data.stories
       .filter(
         (story) =>
-          story.content?.component === "post" && story.slug !== data.slug
+          story.content?.component === "post" &&
+          story.slug !== result.data.story.slug
       )
       .map((story) => ({
         category: story.content.Tag,
@@ -62,18 +91,9 @@ export default {
         new Date(a.date).valueOf() > new Date(b.date).valueOf() ? -1 : 1
       );
 
-    console.log(data.jobs);
     return {
-      blok: {
-        category: data.content.Tag,
-        date: data.published_at,
-        title: data.content.title,
-        excerpt: data.content.excerpt,
-        article: data.content.article,
-        image: data.content.image,
-        type: "job",
-      },
-      jobs: data.jobs,
+      story: result.data.story,
+      blok: formatData(result.data.story),
     };
   },
 };

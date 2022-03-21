@@ -7,12 +7,12 @@
       <TitleText
         :blok="{
           type: 'secondary',
-          title: title,
-          description: description,
+          title: content.title,
+          description: content.description,
         }"
       />
       <ul class="container grid grid-cols-1 md:grid-cols-2 gap-7">
-        <li v-for="(card, index) in projects" :key="index">
+        <li v-for="(card, index) in content.projects" :key="index">
           <ShareCard :blok="card" />
         </li>
       </ul>
@@ -25,7 +25,7 @@ import { storyBlocksContentTransformers } from "../../../utils/story-bloks-conte
 
 export default {
   head({ _data }) {
-    const { title, description, image } = _data.SEO;
+    const { title, description, image } = _data.content.SEO;
     return {
       title,
       meta: [
@@ -44,12 +44,38 @@ export default {
       ],
     };
   },
+  mounted() {
+    this.$storybridge(() => {
+      const storyblokInstance = new StoryblokBridge();
+
+      // Use the input event for instant update of content
+      storyblokInstance.on("input", (event) => {
+        if (event.story.id === this.story.id) {
+          this.content = event.story.content;
+          this.content.SEO = storyBlocksContentTransformers(
+            event.story.content.blocks
+          ).SEO;
+        }
+      });
+
+      // Use the bridge to listen the events
+      storyblokInstance.on(["published", "change"], (event) => {
+        // window.location.reload()
+        this.$nuxt.$router.go({
+          path: this.$nuxt.$router.currentRoute,
+          force: true,
+        });
+      });
+    });
+  },
   async asyncData({ $storyapi }) {
-    const data = (
+    const story = (
       await $storyapi.get("cdn/stories/student-corner/projecten/", {
         version: Date.now(),
       })
-    ).data.story.content;
+    ).data.story;
+
+    const data = story.content;
 
     data.projects = (
       await $storyapi.get("cdn/stories?starts_with=student-corner/projecten", {
@@ -77,7 +103,7 @@ export default {
     const blockContent = storyBlocksContentTransformers(data.blocks);
     data.SEO = blockContent.SEO;
 
-    return { ...data };
+    return { content: data, story };
   },
 };
 </script>

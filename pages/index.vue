@@ -1,25 +1,25 @@
 <template>
   <section>
-    <FullWidthImage :image="image.image.filename" />
+    <FullWidthImage :image="content.image.image.filename" />
 
     <div class="max-w-[800px] mx-auto text-center richtext mb-14">
-      <rich-text-renderer :document="richText.richText" />
+      <rich-text-renderer :document="content.richText.richText" />
     </div>
 
-    <MenuPreview :blocks="pageblocks.block" />
+    <MenuPreview :blocks="content.pageblocks.block" />
     <RecentNewsPreview />
     <Carousel
       :blok="{
         type: 'images',
         title: 'Ontmoet het Team',
-        slides: teamMembers,
+        slides: content.teamMembers,
       }"
     />
     <Carousel
       :blok="{
         type: 'icons',
         title: 'Onze Partners',
-        slides: Partners,
+        slides: content.Partners,
       }"
     />
   </section>
@@ -28,7 +28,7 @@
 <script>
 import { storyBlocksContentTransformers } from "../utils/story-bloks-content-transformer";
 function handleData(data) {
-  const homeData = storyBlocksContentTransformers(data);
+  const homeData = Object.assign({}, storyBlocksContentTransformers(data));
 
   // fix partners
   homeData.Partners = homeData.Partners.Partners.map((p) => ({
@@ -42,22 +42,41 @@ function handleData(data) {
     image: p.image,
   }));
 
-  return homeData;
+  return { ...homeData };
 }
 export default {
   data() {
     return {
-      SEO: {},
-      Partners: [],
-      image: {},
-      pageblocks: [],
-      recentNews: {},
-      richText: {},
-      teamMembers: [],
+      story: {},
+      content: {},
     };
   },
+  mounted() {
+    this.$storybridge(() => {
+      const storyblokInstance = new StoryblokBridge();
+
+      // Use the input event for instant update of content
+      storyblokInstance.on("input", (event) => {
+        if (event.story.id === this.story.id) {
+          const data = handleData(event.story.content.body);
+          Object.keys(data).forEach((key) => {
+            this.$set(this.content, key, data[key]);
+          });
+        }
+      });
+
+      // Use the bridge to listen the events
+      storyblokInstance.on(["published", "change"], (event) => {
+        // window.location.reload()
+        this.$nuxt.$router.go({
+          path: this.$nuxt.$router.currentRoute,
+          force: true,
+        });
+      });
+    });
+  },
   head({ _data }) {
-    const { title, description, image } = _data.SEO;
+    const { title, description, image } = _data.content.SEO;
     return {
       title,
       meta: [
@@ -76,39 +95,16 @@ export default {
       ],
     };
   },
-  mounted() {
-    const self = this;
-    this.$storybridge(() => {
-      const storyblokInstance = new StoryblokBridge();
-
-      // Use the input event for instant update of content
-      storyblokInstance.on("input", (event) => {
-        const data = handleData(event.story.content.body);
-        Object.keys(data).forEach((key) => {
-          console.log("Mapping", key);
-          self[key] = Object.assign({}, data[key]);
-        });
-      });
-
-      // Use the bridge to listen the events
-      storyblokInstance.on(["published", "change"], (event) => {
-        // window.location.reload()
-        this.$nuxt.$router.go({
-          path: this.$nuxt.$router.currentRoute,
-          force: true,
-        });
-      });
-    });
-  },
   async asyncData({ $storyapi }) {
-    const data = (
+    const story = (
       await $storyapi.get("cdn/stories/home", { version: Date.now() })
-    ).data.story.content.body;
+    ).data.story;
 
-    const homeData = handleData(data);
+    const homeData = handleData(story.content.body);
 
     return {
-      ...homeData,
+      story,
+      content: homeData,
     };
   },
 };

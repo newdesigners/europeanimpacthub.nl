@@ -2,14 +2,14 @@
   <section>
     <div class="container max-w-[1222px] pt-2.5 lg:pt-5 pb-16">
       <h1 class="text-black text-20 lg:text-28 pb-2.5 lg:pb-7">
-        {{ Hero.name }}
+        {{ content.Hero.name }}
       </h1>
       <div>
         <ul
           class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-10"
         >
           <li
-            v-for="(n, i) in newsPosts"
+            v-for="(n, i) in content.newsPosts"
             :key="i"
             :class="{ 'col-span-full': i === 0 }"
           >
@@ -25,7 +25,7 @@
 import { storyBlocksContentTransformers } from "../../utils/story-bloks-content-transformer";
 export default {
   head(ctx) {
-    const { title, description, image } = ctx._data.SEO;
+    const { title, description, image } = ctx._data.content.SEO;
     return {
       title,
       meta: [
@@ -45,16 +45,14 @@ export default {
     };
   },
   mounted() {
-    const self = this;
     this.$storybridge(() => {
       const storyblokInstance = new StoryblokBridge();
 
       // Use the input event for instant update of content
       storyblokInstance.on("input", (event) => {
-        const data = storyBlocksContentTransformers(event.story.content.body);
+        const data = storyBlocksContentTransformers(event.story.content.blocks);
         Object.keys(data).forEach((key) => {
-          console.log("Mapping", key);
-          self[key] = Object.assign({}, data[key]);
+          this.$set(this.content, key, data[key]);
         });
       });
 
@@ -69,16 +67,16 @@ export default {
     });
   },
   async asyncData({ $storyapi }) {
-    const data = storyBlocksContentTransformers(
-      (
-        await $storyapi.get("cdn/stories/newsroom/", {
-          version: Date.now(),
-        })
-      ).data.story.content.blocks
-    );
+    const story = (
+      await $storyapi.get("cdn/stories/newsroom/", {
+        version: Date.now(),
+      })
+    ).data.story;
+
+    const content = storyBlocksContentTransformers(story.content.blocks);
 
     // get all newsroom posts
-    data.newsPosts = (
+    content.newsPosts = (
       await $storyapi.get("cdn/stories?starts_with=newsroom", {
         version: Date.now(),
       })
@@ -96,7 +94,10 @@ export default {
         new Date(a.date).valueOf() > new Date(b.date).valueOf() ? -1 : 1
       );
 
-    return { ...data };
+    return {
+      content,
+      story,
+    };
   },
 };
 </script>

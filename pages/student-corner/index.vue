@@ -2,28 +2,28 @@
   <section>
     <PageIntro
       :blok="{
-        image: Hero.backgroundImage,
-        title: Hero.name,
-        description: Hero.Description,
+        image: content.Hero.backgroundImage,
+        title: content.Hero.name,
+        description: content.Hero.Description,
         triangle: 'blue',
       }"
     />
 
     <div class="max-w-[800px] mx-auto text-center richtext mb-14">
-      <rich-text-renderer :document="richText.richText" />
+      <rich-text-renderer :document="content.richText.richText" />
     </div>
 
     <CircleCardPreview
       :blok="{
         posts: [
           {
-            image: projectblock.image,
-            title: projectblock.title,
+            image: content.projectblock.image,
+            title: content.projectblock.title,
             url: '/student-corner/projecten/',
           },
           {
-            image: vacatureblock.image,
-            title: vacatureblock.title,
+            image: content.vacatureblock.image,
+            title: content.vacatureblock.title,
             url: '/student-corner/vacature-bank/',
           },
         ],
@@ -33,20 +33,20 @@
       :blok="{
         media: [
           {
-            image: spotifyBlock.image,
-            title: spotifyBlock.title,
-            sub_title: spotifyBlock.subtitle,
-            description: spotifyBlock.content,
+            image: content.spotifyBlock.image,
+            title: content.spotifyBlock.title,
+            sub_title: content.spotifyBlock.subtitle,
+            description: content.spotifyBlock.content,
             type: 'spotify',
-            url: spotifyBlock.url.cached_url,
+            url: content.spotifyBlock.url.cached_url,
           },
           {
-            image: mediaBlock.image,
-            title: mediaBlock.title,
-            sub_title: mediaBlock.subtitle,
-            description: mediaBlock.content,
+            image: content.mediaBlock.image,
+            title: content.mediaBlock.title,
+            sub_title: content.mediaBlock.subtitle,
+            description: content.mediaBlock.content,
             type: 'instagram',
-            url: mediaBlock.url.cached_url,
+            url: content.mediaBlock.url.cached_url,
           },
         ],
       }"
@@ -58,7 +58,7 @@
 import { storyBlocksContentTransformers } from "../../utils/story-bloks-content-transformer";
 export default {
   head({ _data }) {
-    const { title, description, image } = _data.SEO;
+    const { title, description, image } = _data.content.SEO;
     return {
       title,
       meta: [
@@ -77,19 +77,48 @@ export default {
       ],
     };
   },
+  mounted() {
+    this.$storybridge(() => {
+      const storyblokInstance = new StoryblokBridge();
+
+      // Use the input event for instant update of content
+      storyblokInstance.on("input", (event) => {
+        if (event.story.id === this.story.id) {
+          const data = storyBlocksContentTransformers(
+            event.story.content.blocks
+          );
+          Object.keys(data).forEach((key) => {
+            this.$set(this.content, key, data[key]);
+          });
+        }
+      });
+
+      // Use the bridge to listen the events
+      storyblokInstance.on(["published", "change"], (event) => {
+        // window.location.reload()
+        this.$nuxt.$router.go({
+          path: this.$nuxt.$router.currentRoute,
+          force: true,
+        });
+      });
+    });
+  },
   async asyncData({ $storyapi }) {
-    const data = storyBlocksContentTransformers(
-      (
-        await $storyapi.get("cdn/stories/student-corner/", {
-          version: Date.now(),
-        })
-      ).data.story.content.blocks
-    );
+    const story = (
+      await $storyapi.get("cdn/stories/student-corner/", {
+        version: Date.now(),
+      })
+    ).data.story;
+
+    const data = storyBlocksContentTransformers(story.content.blocks);
 
     data.spotifyBlock = data["spotify/updateblock"];
     data.mediaBlock = data["spotify/updateblock_1"];
 
-    return { ...data };
+    return {
+      content: data,
+      story,
+    };
   },
 };
 </script>
