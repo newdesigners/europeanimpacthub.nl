@@ -97,7 +97,8 @@ export default {
       }))
       .sort((a, b) =>
         new Date(a.date).valueOf() > new Date(b.date).valueOf() ? -1 : 1
-      );
+      )
+      .sort((a, b) => (a.pinned ? 1 : -1));
 
     return {
       story,
