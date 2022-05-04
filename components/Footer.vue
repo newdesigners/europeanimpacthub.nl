@@ -2,11 +2,11 @@
   <footer class="bg-primary text-white">
     <div class="py-5 md:py-9 md:pt-16 container">
       <div class="pb-11">
-        <p class="text-12 md:text-25">Contact:</p>
-        <p class="text-12 md:text-25">dr. Mendeltje van Keulen</p>
+        <p class="text-12 md:text-18">Contact:</p>
+        <p class="text-12 md:text-18">dr. Mendeltje van Keulen</p>
         <a
-          class="text-12 md:text-25 underline"
-          href="mailto:gebruiker@provider.nl"
+          class="text-12 md:text-18 underline"
+          href="mailto:m.vankeulen@hhs.nl"
         >
           m.vankeulen@hhs.nl
         </a>

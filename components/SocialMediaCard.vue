@@ -4,7 +4,7 @@
     :class="{ 'after:bg-red after:rounded-l-md lg:after:rounded-l-2xl after:left-0 after:-right-full self-end' : reverse }"
   >
     <a
-      class="flex h-[228px] lg:h-[448px]"
+      class="flex h-full"
       :class="{ 'flex-row-reverse' : reverse }"
       rel="noopener noreferrer"
       :href="blok.url"
@@ -33,7 +33,7 @@
         </aside>
       </div>
       <figure
-        class="w-[42%] h-full overflow-hidden"
+        class="w-[42%]  overflow-hidden"
         :class="{
           'rounded-r-md lg:rounded-r-2xl': !reverse,
           'rounded-r-none rounded-l-md lg:rounded-l-2xl' : reverse,

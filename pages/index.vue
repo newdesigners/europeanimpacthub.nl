@@ -7,7 +7,11 @@
     </div>
 
     <MenuPreview :blocks="content.pageblocks.block" />
-    <RecentNewsPreview />
+    <RecentNewsPreview :blok="{
+        type: 'text',
+        title: content.recentNews.title,
+        link: content.recentNews.link
+      }" />
     <Carousel
       :blok="{
         type: 'images',
@@ -20,6 +24,7 @@
         type: 'icons',
         title: 'Onze Partners',
         slides: content.Partners,
+        
       }"
     />
   </section>
@@ -30,6 +35,7 @@ import { storyBlocksContentTransformers } from "../utils/story-bloks-content-tra
 function handleData(data) {
   const homeData = Object.assign({}, storyBlocksContentTransformers(data));
 
+  console.log(homeData);
   // fix partners
   homeData.Partners = homeData.Partners.Partners.map((p) => ({
     title: p.name,

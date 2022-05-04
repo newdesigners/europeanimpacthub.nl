@@ -41,7 +41,7 @@
           </figure>
           <div class="flex-1">
             <p class="text-white">{{ person.name }}</p>
-            <p class="text-white">{{ person.email }}</p>
+            <a :href="`mailto:${person.email}`" class="text-[16px] text-white">{{ person.email }}</a>
           </div>
         </div>
       </div>

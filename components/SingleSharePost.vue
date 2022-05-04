@@ -8,7 +8,7 @@
         <p class="text-10 lg:text-20 text-black pb-2.5 lg:pb-4 text-center">
           <span class="uppercase">{{ blok.category }}</span>
           <span>|</span>
-          <span class="uppercase">{{ formatDate(blok.date) }}</span>
+          <span class="uppercase">{{ date }}</span>
         </p>
         <h1
           class="
@@ -48,6 +48,7 @@
             right-0
             bottom-0
             object-cover object-center
+            w-full
           "
           v-if="blok.image"
           :src="blok.image.filename"
@@ -81,7 +82,7 @@
               <Resources class="w-4 h-4 lg:w-9 lg:h-9" :type="`icon-${s}`" />
             </ShareNetwork>
           </li>
-          <li @click="copyUrl">
+          <li class="cursor-pointer" @click="copyUrl">
             <Resources class="w-4 h-4 lg:w-9 lg:h-9" type="icon-share" />
           </li>
         </ul>
@@ -129,13 +130,13 @@
                 <p class="uppercase pb-2 lg:text-15">
                   <span class="text-primary">{{ p.category }}</span>
                   <span class="text-black hidden lg:inline pl-5">{{
-                    formatDate(p.date)
+                    date
                   }}</span>
                 </p>
                 <h4 class="font-normal text-15 lg:text-20 pb-2 max-w-[295px]">
                   {{ p.name }}
                 </h4>
-                <p class="uppercase lg:hidden">{{ formatDate(p.date) }}</p>
+                <p class="uppercase lg:hidden">{{ date }}</p>
               </div>
             </article>
           </NuxtLink>
@@ -154,6 +155,9 @@ export default {
     path() {
       return process.env.baseUrl + this.$nuxt.$route.fullPath;
     },
+     date() {
+      return this.$moment(this.blok.date).subtract(1, 'months').format('MMMM YYYY');
+    },
   },
   props: {
     blok: {
@@ -162,6 +166,8 @@ export default {
     projects: {
       type: Array,
     },
+    
+    
   },
   methods: {
     async copyUrl() {
@@ -173,7 +179,8 @@ export default {
       }
     },
     formatDate(date) {
-      return this.$moment(date).format("MMMM YYYY");
+      console.log(date);
+      return this.$moment(date).format("LL");
     },
   },
 };

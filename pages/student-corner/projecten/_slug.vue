@@ -61,7 +61,7 @@ export default {
   },
   async asyncData({ $storyapi, params }) {
     const result = await $storyapi.get(
-      "cdn/stories/student-corner/projecten/" + params.slug,
+      "cdn/stories/student-corner/minor-aanbod/" + params.slug,
       { version: Date.now() }
     );
 

@@ -11,6 +11,7 @@
           relative
           bg-primary
           pt-[45%]
+          
           lg:pt-[32%]
           overflow-hidden
           mb-2.5
@@ -24,6 +25,7 @@
             h-full
             absolute
             top-0
+            w-full
             left-0
             right-0
             bottom-0
@@ -39,7 +41,7 @@
           {{ blok.title }}
         </h1>
         <p
-          class="text-black font-medium pb-8 md:pb-16 md:text-20 md:font-normal"
+          class="text-black font-bold pb-8 md:pb-8 md:text-20 "
         >
           {{ blok.excerpt }}
         </p>

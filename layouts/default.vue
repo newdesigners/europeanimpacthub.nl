@@ -7,4 +7,7 @@
 </template>
 
 <style>
+.nuxt-link-exact-active {
+  color: #CA433C!important;
+}
 </style>

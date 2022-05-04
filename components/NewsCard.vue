@@ -8,7 +8,7 @@
     >
       <figure class="w-full relative bg-primary pt-[43%] md:pt-[35%] xl:pt-[43%] h-full overflow-hidden rounded-t-md lg:rounded-t-xl sm:w-[57%] sm:rounded-none sm:rounded-l-md md:rounded-none md:rounded-t-md md:w-full">
         <img
-          class="block max-h-full max-w-full h-full absolute top-0 left-0 right-0 bottom-0 object-cover object-center"
+          class="block max-h-full max-w-full w-full h-full absolute top-0 left-0 right-0 bottom-0 object-cover object-center"
           :src="blok.image.filename"
           :alt="blok.image.alt"
         />
@@ -31,7 +31,7 @@ export default {
   },
   computed: {
     date() {
-      return this.$moment(this.blok.date).format('MMMM YYYY');
+      return this.$moment(this.blok.date).format('LL');
     },
   },
 };

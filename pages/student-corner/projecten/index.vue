@@ -70,7 +70,7 @@ export default {
   },
   async asyncData({ $storyapi }) {
     const story = (
-      await $storyapi.get("cdn/stories/student-corner/projecten/", {
+      await $storyapi.get("cdn/stories/student-corner/minor-aanbod/", {
         version: Date.now(),
       })
     ).data.story;
@@ -78,7 +78,7 @@ export default {
     const data = story.content;
 
     data.projects = (
-      await $storyapi.get("cdn/stories?starts_with=student-corner/projecten", {
+      await $storyapi.get("cdn/stories?starts_with=student-corner/minor-aanbod", {
         version: Date.now(),
       })
     ).data.stories

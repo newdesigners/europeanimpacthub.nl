@@ -23,15 +23,16 @@
     height: -webkit-fill-available;
     scroll-behavior: smooth;
     box-sizing: border-box;
+    
   }
 
   body {
-    @apply relative text-13 font-aktiv font-normal text-secondary;
+    @apply relative text-16 font-aktiv font-normal text-secondary;
     min-height: -webkit-fill-available;
   }
 
   p {
-    @apply font-aktiv font-normal text-13 text-secondary lg:text-20;
+    @apply font-aktiv font-normal text-16 text-secondary lg:text-20;
     line-height: 160% !important;
   }
 
@@ -42,6 +43,7 @@
   h5,
   h6 {
     @apply font-gt font-bold;
+    line-height: 150% !important;
   }
 
   h1 {
@@ -74,12 +76,26 @@
     margin-bottom: 20px;
     font-size: 50px;
     font-style: italic;
+    
   }
+
+  
 
   p {
     font-size: 25px;
     font-weight: 500;
     line-height: 160% !important;
+  }
+
+  @media only screen and (max-width: 500px) {
+    h1 {
+      font-size: 32px;
+      
+    }
+    p {
+      font-size: 20px;
+      
+    }
   }
 
   &--white {
