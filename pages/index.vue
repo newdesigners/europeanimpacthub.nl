@@ -22,7 +22,7 @@
     <Carousel
       :blok="{
         type: 'icons',
-        title: 'Onze Partners',
+        title: 'Wij werken onder meer samen met',
         slides: content.Partners,
         
       }"
