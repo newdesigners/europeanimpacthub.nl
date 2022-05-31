@@ -19,24 +19,30 @@
           <ul class="flex gap-1.5 md:gap-2">
             <li>
               <a 
-                href=""
+                href="https://www.linkedin.com/company/lectoraat-changing-role-of-europe/"
                 class="flex bg-white w-10 h-10 md:w-12 md:h-12 rounded-md justify-center items-center"
+                rel="noopener noreferrer"
+                target="_blank"
               >
                 <Resources class="w-7/12 h-auto" type="icon-linkedin" />
               </a>
             </li>
             <li>
               <a 
-                href=""
+                href="https://twitter.com/Lectoraatcreu?s=20&t=qlebZABeRRjIvgHZHz2D7g"
                 class="flex bg-white w-10 h-10 md:w-12 md:h-12 rounded-md justify-center items-center"
+                rel="noopener noreferrer"
+                target="_blank"
               >
                 <Resources class="w-7/12 h-auto" type="icon-twitter" />
               </a>
             </li>
             <li>
               <a 
-                href=""
+                href="https://www.instagram.com/europeanimpacthub/"
                 class="flex bg-white w-10 h-10 md:w-12 md:h-12 rounded-md justify-center items-center"
+                rel="noopener noreferrer"
+                target="_blank"
               >
                 <Resources class="w-7/12 h-auto" type="icon-instagram" />
               </a>
