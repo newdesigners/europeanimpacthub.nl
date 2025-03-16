@@ -1,5 +1,8 @@
 # europeanimpacthub.nl
 
+> [!IMPORTANT]  
+> This repo is deprecated! The european impact project is now a Nextjs app, hosted [here](https://github.com/newdesigners/european-impact).
+
 ## Environment Setup
 
 ```bash
